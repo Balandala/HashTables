@@ -45,6 +45,7 @@ namespace HashTables.HashTables.OpenAddressingHashTable
                 throw new InvalidOperationException("Cлучилось переполнение хэш таблицы.");
             }
 
+            //Если в таблице не хватает места под запись, увеличиваем её размер
             IncreaseTableSize();
             Add(key, value);
         }
@@ -130,7 +131,6 @@ namespace HashTables.HashTables.OpenAddressingHashTable
                 {
                     Console.WriteLine("null; null");
                 }
-
             }
         }
     }
