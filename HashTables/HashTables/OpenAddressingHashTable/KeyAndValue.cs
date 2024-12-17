@@ -6,7 +6,29 @@ using System.Threading.Tasks;
 
 namespace HashTables.HashTables.OpenAddressingHashTable
 {
-    internal class KeyAndValue
+    internal class KeyAndValue<TKey, TValue>
     {
+        private readonly TKey _key;
+        private readonly TValue _value;
+        public KeyAndValue(TKey key, TValue value)
+        {
+            _key = key;
+            _value = value;
+        }
+
+        public TKey GetKey() { return _key; }
+        public TValue GetValue() { return _value; }
+
+        public override string ToString()
+        {
+            if (_key != null && _value != null)
+            {
+                return _key.ToString() + "; " + _value.ToString();
+            }
+            else
+            {
+                return "null; null";
+            }
+        }
     }
 }
