@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashTables.HashFunctions
 {
-    internal interface IHash
+    internal class DataSetsGenerator
     {
-        int Hash(int key);
     }
 }
