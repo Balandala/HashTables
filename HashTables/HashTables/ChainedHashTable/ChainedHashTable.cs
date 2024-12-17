@@ -9,16 +9,14 @@ namespace HashTables.HashTables.ChainedHashTable
     // Класс, реализующий хеш-таблицу с разрешением коллизий методом цепочек
     public class ChainedHashMap<TKey, TValue> : IHashMap<TKey, TValue>
     {
-        // Размер хеш-таблицы
         public int Size { get; private set; }
 
-        // Массив связных списков для хранения элементов
         private MyLinkedList<TKey, TValue>[] _values;
 
         // Хеш-функция, используемая для вычисления индекса
         private Func<object, int, int> _hashFunc;
 
-        // Конструктор класса
+
         public ChainedHashMap(int size, Func<object, int, int> hash)
         {
             Size = size;
@@ -38,14 +36,12 @@ namespace HashTables.HashTables.ChainedHashTable
             // Вычисляем хеш ключа
             int hash = _hashFunc(key, Size);
 
-            // Если список по данному хешу не пуст, ищем элемент
             if (_values[hash].Count != 0)
             {
                 MyLinkedList<TKey, TValue> nodes = _values[hash];
                 return nodes.Get(key).Value;
             }
 
-            // Если элемент не найден, выбрасываем исключение
             throw new ArgumentException($"Hash-Map does not contains element with given key {key.ToString()}");
         }
 
@@ -55,7 +51,6 @@ namespace HashTables.HashTables.ChainedHashTable
             // Вычисляем хеш ключа
             int hash = _hashFunc(key, Size);
 
-            // Если список по данному хешу пуст, создаем новый список
             if (_values[hash].Count == 0)
             {
                 MyLinkedList<TKey, TValue> nodes = new MyLinkedList<TKey, TValue>();
@@ -64,7 +59,7 @@ namespace HashTables.HashTables.ChainedHashTable
             }
             else
             {
-                // Иначе добавляем элемент в существующий список
+
                 _values[hash].Add(key, value);
             }
         }
@@ -75,7 +70,7 @@ namespace HashTables.HashTables.ChainedHashTable
             // Вычисляем хеш ключа
             int hash = _hashFunc(key, Size);
 
-            // Если список по данному хешу не пуст, удаляем элемент
+
             if (_values[hash].Count != 0)
             {
                 MyLinkedList<TKey, TValue> nodes = _values[hash];
@@ -83,7 +78,7 @@ namespace HashTables.HashTables.ChainedHashTable
             }
             else
             {
-                // Если элемент не найден, выбрасываем исключение
+
                 throw new ArgumentException($"Hash-Map does not contains element with given key {key.ToString()}");
             }
         }
@@ -91,16 +86,15 @@ namespace HashTables.HashTables.ChainedHashTable
         // Метод для тестирования хеш-таблицы с заданным набором данных
         public void Test(Dictionary<TKey, TValue> set)
         {
-            // Проверяем, что размер набора данных не превышает размер хеш-таблицы
+
             if (set.Count > Size)
             {
                 throw new ArgumentException($"Size of set more than Hash-Map.");
             }
 
-            // Инициализируем массив связных списков
+
             _values = new MyLinkedList<TKey, TValue>[Size];
 
-            // Добавляем все элементы из набора данных в хеш-таблицу
             foreach (var el in set)
             {
                 Add(el.Key, el.Value);
@@ -136,7 +130,6 @@ namespace HashTables.HashTables.ChainedHashTable
                 Console.WriteLine();
             }
 
-            // Выводим длину самой длинной цепочки
             Console.WriteLine($"Длина макисмальной цепочки:{GetLongestChain()}");
         }
 

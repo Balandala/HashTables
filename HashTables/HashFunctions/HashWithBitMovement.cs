@@ -14,7 +14,6 @@ namespace HashTables.HashFunctions
         // Хеш-функция с использованием побитовых операций
         public static int HashWithBitMovement(object data, int size)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
@@ -49,11 +48,9 @@ namespace HashTables.HashFunctions
         // Хеш-функция с использованием метода умножения
         public static int HashWithMultiplication(object data, int size)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
-            // Если длина массива меньше 128, дополняем его нулями
             if (hash.Length < 128)
             {
                 for (int i = 0; i < 128 - hash.Length; i++)
@@ -61,11 +58,9 @@ namespace HashTables.HashFunctions
                     list.Add(0);
                 }
 
-                // Добавляем байты из исходного массива
                 hash.ToList().ForEach(x => list.Add(x));
             }
 
-            // Суммируем все байты
             int sum = list.Sum(x => x);
 
             // Применяем метод умножения для вычисления хеша
@@ -75,11 +70,9 @@ namespace HashTables.HashFunctions
         // Хеш-функция с использованием метода деления
         public static int HashWithDevision(object data, int size)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
-            // Если длина массива меньше 128, дополняем его нулями
             if (hash.Length < 128)
             {
                 for (int i = 0; i < 128 - hash.Length; i++)
@@ -87,11 +80,9 @@ namespace HashTables.HashFunctions
                     list.Add(0);
                 }
 
-                // Добавляем байты из исходного массива
                 hash.ToList().ForEach(x => list.Add(x));
             }
 
-            // Суммируем все байты
             int sum = list.Sum(x => x);
 
             // Применяем метод деления для вычисления хеша
@@ -106,7 +97,6 @@ namespace HashTables.HashFunctions
                 sum *= size % 127;
             }
 
-            // Возвращаем хеш по модулю размера таблицы
             if (sum > size)
             {
                 return (sum / size) % size;
@@ -117,11 +107,9 @@ namespace HashTables.HashFunctions
         // Хеш-функция для линейного исследования
         public static int LineralyResearchHash(object data, int size, int attemptNumber)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
-            // Если длина массива меньше 128, дополняем его нулями
             if (hash.Length < 128)
             {
                 for (int i = 0; i < 128 - hash.Length; i++)
@@ -129,11 +117,9 @@ namespace HashTables.HashFunctions
                     list.Add(0);
                 }
 
-                // Добавляем байты из исходного массива
                 hash.ToList().ForEach(x => list.Add(x));
             }
 
-            // Суммируем все байты
             int sum = list.Sum(x => x);
 
             // Возвращаем хеш для линейного исследования
@@ -143,11 +129,9 @@ namespace HashTables.HashFunctions
         // Хеш-функция для квадратичного исследования
         public static int QuadraticResearchHash(object data, int size, int attemptNumber)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
-            // Если длина массива меньше 128, дополняем его нулями
             if (hash.Length < 128)
             {
                 for (int i = 0; i < 128 - hash.Length; i++)
@@ -155,11 +139,9 @@ namespace HashTables.HashFunctions
                     list.Add(0);
                 }
 
-                // Добавляем байты из исходного массива
                 hash.ToList().ForEach(x => list.Add(x));
             }
 
-            // Суммируем все байты
             int sum = list.Sum(x => x);
 
             // Возвращаем хеш для квадратичного исследования
@@ -169,11 +151,9 @@ namespace HashTables.HashFunctions
         // Хеш-функция для двойного хеширования
         public static int DualHash(object data, int size, int attemptNumber)
         {
-            // Преобразуем объект в массив байтов
             byte[] hash = ObjectToByteArray(data);
             List<byte> list = new List<byte>();
 
-            // Если длина массива меньше 128, дополняем его нулями
             if (hash.Length < 128)
             {
                 for (int i = 0; i < 128 - hash.Length; i++)
@@ -181,11 +161,9 @@ namespace HashTables.HashFunctions
                     list.Add(0);
                 }
 
-                // Добавляем байты из исходного массива
                 hash.ToList().ForEach(x => list.Add(x));
             }
 
-            // Суммируем все байты
             int sum = list.Sum(x => x);
 
             // Возвращаем хеш для двойного хеширования

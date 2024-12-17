@@ -13,7 +13,7 @@ namespace HashTables.HashTables.OpenAddressingHashTable
         private readonly TKey _key;
         private readonly TValue _value;
 
-        // Конструктор класса
+    
         public KeyAndValue(TKey key, TValue value)
         {
             _key = key;
@@ -29,15 +29,13 @@ namespace HashTables.HashTables.OpenAddressingHashTable
         // Переопределение метода ToString для удобного вывода
         public override string ToString()
         {
-            // Проверяем, что ключ и значение не равны null
+           
             if (_key != null && _value != null)
             {
-                // Возвращаем строковое представление ключа и значения
                 return _key.ToString() + "; " + _value.ToString();
             }
             else
             {
-                // Если ключ или значение равны null, возвращаем "null; null"
                 return "null; null";
             }
         }
